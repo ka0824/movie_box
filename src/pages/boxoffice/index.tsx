@@ -13,6 +13,7 @@ function Index() {
       <DatePicker
         selected={date}
         onChange={(date) => setDate(date || new Date())}
+        dateFormat="yyyy년 MM월 dd일"
       ></DatePicker>
     </div>
   );
