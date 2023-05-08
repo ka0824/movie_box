@@ -46,6 +46,10 @@ function VerticalNav() {
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (navRef.current === null) {
+      return;
+    }
+
     if (isShow) {
       navRef.current.style.left = '0px';
     } else {
