@@ -4,7 +4,7 @@ import { FaBloggerB } from 'react-icons/fa';
 
 function Footer() {
   return (
-    <div className="flex px-24 py-4 justify-between select-none items-center max-md:px-0 z-10 bg-white flex-wrap">
+    <div className="flex px-24 py-4 justify-between select-none items-center max-md:px-0 max-md:pl-28 z-20 bg-white flex-wrap">
       <div className="text-xl">Movie Box, 2023</div>
       <button></button>
       <div className="flex flex-wrap">

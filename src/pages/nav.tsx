@@ -46,6 +46,10 @@ function VerticalNav() {
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (navRef.current === null) {
+      return;
+    }
+
     if (isShow) {
       navRef.current.style.left = '0px';
     } else {
@@ -59,7 +63,7 @@ function VerticalNav() {
 
   return (
     <div
-      className="flex flex-col absolute px-8 py-4 select-none items-center md:hidden top-0 min-h-full w-64 transition-all shadow-2xl bg-slate-50"
+      className="flex flex-col absolute px-8 py-4 select-none items-center md:hidden top-0 min-h-full w-64 transition-all shadow-2xl bg-slate-50 z-30"
       ref={navRef}
     >
       <button className="ml-auto" onClick={handleShow}>
