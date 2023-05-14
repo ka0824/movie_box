@@ -14,7 +14,7 @@ function useWeekendBoxOffice(
   >('weekendBoxOffice', async () => {
     try {
       const result = await axios.get(
-        'http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json',
+        'https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json',
         {
           params: {
             key: process.env.NEXT_PUBLIC_API_KEY,
