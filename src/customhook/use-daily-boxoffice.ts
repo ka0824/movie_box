@@ -14,7 +14,7 @@ function useDailyBoxOffice(
   >('dailyBoxOffice', async () => {
     try {
       const result = await axios.get(
-        'http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json',
+        'https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json',
         {
           params: {
             key: process.env.NEXT_PUBLIC_API_KEY,

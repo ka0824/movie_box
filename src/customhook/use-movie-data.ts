@@ -8,7 +8,7 @@ function useMovieData(movieId: string) {
     async () => {
       try {
         const result = await axios.get(
-          'http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json',
+          'https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json',
           {
             params: {
               key: process.env.NEXT_PUBLIC_API_KEY,
