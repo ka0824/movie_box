@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { DailyData } from '@/type/global';
 import { AxiosError } from 'axios';
 import { AgChartsReact } from 'ag-charts-react';
@@ -53,8 +54,43 @@ function Piegraph({
     ],
   };
 
+  const [startX, setStartX] = useState<number | null>(null);
+  const [startY, setStartY] = useState<number | null>(null);
+
+  const onTouchStart = (event: React.TouchEvent) => {
+    setStartX(event.touches[0].clientX);
+    setStartY(event.touches[0].clientY);
+  };
+
+  const onTouchMove = (event: React.TouchEvent) => {
+    if (startX !== null && startY !== null) {
+      const currentX = event.touches[0].clientX;
+      const currentY = event.touches[0].clientY;
+
+      const deltaX = (currentX - startX) * 0.05;
+      const deltaY = (currentY - startY) * 0.05;
+
+      if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        window.scrollTo(0, window.scrollY - deltaY);
+      } else {
+        const container = event.currentTarget;
+        container.scrollLeft -= deltaX;
+      }
+    }
+  };
+
+  const onTouchEnd = () => {
+    setStartX(null);
+    setStartY(null);
+  };
+
   return (
-    <div className="w-full overflow-x-auto overflow-y-hidden">
+    <div
+      className="w-full overflow-x-auto overflow-y-hidden"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       <div style={{ height: '600px', minWidth: '600px' }}>
         <AgChartsReact options={options} />
       </div>
