@@ -12,10 +12,10 @@ const list: NavElement[] = [
     name: '박스 오피스',
     href: '/boxoffice',
   },
-  {
-    name: '영화 검색',
-    href: '/search',
-  },
+  // {
+  //   name: '영화 검색',
+  //   href: '/search',
+  // },
 ];
 
 function NavLink({ element }: { element: NavElement }) {
