@@ -99,8 +99,8 @@ function Bargraph({
       const currentX = event.touches[0].clientX;
       const currentY = event.touches[0].clientY;
 
-      const deltaX = currentX - startX;
-      const deltaY = currentY - startY;
+      const deltaX = (currentX - startX) * 0.5;
+      const deltaY = (currentY - startY) * 0.5;
 
       if (Math.abs(deltaY) > Math.abs(deltaX)) {
         window.scrollTo(0, window.scrollY - deltaY);
