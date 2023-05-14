@@ -12,10 +12,10 @@ const list: NavElement[] = [
     name: '박스 오피스',
     href: '/boxoffice',
   },
-  {
-    name: '영화 검색',
-    href: '/search',
-  },
+  // {
+  //   name: '영화 검색',
+  //   href: '/search',
+  // },
 ];
 
 function NavLink({ element }: { element: NavElement }) {
@@ -63,7 +63,7 @@ function VerticalNav() {
 
   return (
     <div
-      className="flex flex-col absolute px-8 py-4 select-none items-center md:hidden top-0 min-h-full w-64 transition-all shadow-2xl bg-slate-50 z-30"
+      className="flex flex-col fixed px-8 py-4 select-none items-center md:hidden top-0 h-screen w-64 transition-all shadow-2xl bg-slate-50 z-30"
       ref={navRef}
     >
       <button className="ml-auto" onClick={handleShow}>
@@ -89,7 +89,7 @@ function VerticalNav() {
 
 function Nav() {
   return (
-    <div>
+    <div className="h-max">
       <HorizonNav></HorizonNav>
       <VerticalNav></VerticalNav>
     </div>
