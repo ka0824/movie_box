@@ -1,8 +1,8 @@
 module.exports = {
-  extends: ["eslint:recommended", "plugin:node/recommended", "prettier"],
-  plugins: ["prettier"],
+  extends: ['eslint:recommended', 'plugin:node/recommended', 'prettier'],
+  plugins: ['prettier', 'next'],
   rules: {
-    "prettier/prettier": "error",
+    'prettier/prettier': 'error',
   },
   env: {
     node: true,

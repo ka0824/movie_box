@@ -20,9 +20,50 @@ body {
   min-height: 100vh;
 }
 
+.react-datepicker-wrapper {
+  width: 200px;
+}
+
 .react-datepicker-wrapper input {
   border: 1px solid #e2e8f0;
   border-radius: 0.25rem;
   padding: 0.25rem;
   text-align: center;
+}
+
+table {
+  min-width: 200px;
+  height: 200px;
+}
+
+th {
+  padding: 8px;
+  min-width: 100px;
+  border-right: 1px solid #d2d2d2;
+  border-top: 1px solid #d2d2d2;
+}
+
+td {
+  padding: 8px;
+  padding-left: 20px;
+  border-top: 1px solid #d2d2d2;
+}
+
+.loading {
+  animation: spin 1s linear infinite;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 5px solid #888888;
+  border-top-color: #d2d2d2;
+  margin-right: 20px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
