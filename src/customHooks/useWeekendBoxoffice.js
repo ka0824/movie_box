@@ -11,7 +11,7 @@ function useWeekendBoxoffice(formatted, movieType, movieNation) {
           'https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json',
           {
             params: {
-              key: process.env.NEXT_PUBLIC_API_KEY,
+              key: '0347f9645469a4177adbd2a2591942bb',
               targetDt: formatted,
               multiMovieYn: movieType === '전체' ? undefined : movieType,
               repNationCd: movieNation === '전체' ? undefined : movieNation,

@@ -1,4 +1,4 @@
-import useWeekendBoxoffice from '@/customhooks/useWeekendBoxoffice';
+import useWeekendBoxoffice from '@/customHooks/useWeekendBoxoffice';
 import { useState } from 'react';
 import Rank from './Rank';
 import BarGraph from './BarGraph';
