@@ -13,20 +13,28 @@ function Toggle({ type, setType, setDate }) {
 
       setType(e.currentTarget.dataset.type || '');
     },
-    [type, setType]
+    [setType, setDate]
   );
 
   return (
-    <div className="flex justify-end">
+    <div className="flex justify-end gap-2">
       <button
-        className="px-2 py-1 border-2"
+        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ${
+          type === '일별'
+            ? 'bg-gray-700 text-white hover:bg-gray-800'
+            : 'bg-gray-300 text-gray-800 hover:bg-gray-400'
+        }`}
         data-type="일별"
         onClick={handleType}
       >
         일별
       </button>
       <button
-        className="border-2 px-2 py-1"
+        className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-150 ${
+          type === '주중 / 주간'
+            ? 'bg-gray-700 text-white hover:bg-gray-800'
+            : 'bg-gray-300 text-gray-800 hover:bg-gray-400'
+        }`}
         data-type="주중 / 주간"
         onClick={handleType}
       >
