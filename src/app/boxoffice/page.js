@@ -31,7 +31,7 @@ function Page() {
               dateFormat="yyyy년 MM월 dd일"
             ></DatePicker>
           </div>
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4 ml-4">
             <select
               className="w-30 mr-4"
               onChange={(e) => setMovieType(e.target.value)}
