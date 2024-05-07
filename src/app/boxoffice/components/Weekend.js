@@ -6,7 +6,7 @@ import PieGraph from './PieGraph';
 
 function Weekend({ formatted, movieType, movieNation }) {
   const [weekType, setWeekType] = useState('1');
-  const { isLoading, error, data } = useWeekendBoxOffice(
+  const { isLoading, error, data } = useWeekendBoxoffice(
     formatted,
     movieType,
     movieNation
