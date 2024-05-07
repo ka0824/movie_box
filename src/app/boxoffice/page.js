@@ -29,6 +29,11 @@ function Page() {
               selected={date}
               onChange={(date) => setDate(date || new Date())}
               dateFormat="yyyy년 MM월 dd일"
+              maxDate={
+                type === '일별'
+                  ? new Date(new Date(Date.now() - 24 * 60 * 60 * 1000))
+                  : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+              }
             ></DatePicker>
           </div>
           <div className="flex items-center mb-4 ml-4">
