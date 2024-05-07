@@ -67,3 +67,8 @@ td {
     transform: rotate(360deg);
   }
 }
+
+div.ag-body > div.ag-body-vertical-scroll,
+div.ag-body-horizontal-scroll {
+  display: none;
+}

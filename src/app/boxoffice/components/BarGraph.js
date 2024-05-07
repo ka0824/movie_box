@@ -1,42 +1,29 @@
 import { useState } from 'react';
 import { AxiosError } from 'axios';
-import { DailyData } from '@/type/global';
 import { AgChartsReact } from 'ag-charts-react';
 import {
   AgChartOptions,
   AgHistogramSeriesTooltipRendererParams,
 } from 'ag-charts-community';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
-interface FormatterParams {
-  value: string;
-}
-
-function tooltipRenderer(params: AgHistogramSeriesTooltipRendererParams) {
+function tooltipRenderer(params) {
   return {
-    title: params.xValue,
-    content: params.yValue
+    title: params.datum.movieNm,
+    content: params.datum.audiCnt
       .toFixed(0)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
   };
 }
 
-function Bargraph({
-  data = [],
-  isLoading,
-  error,
-}: {
-  data: DailyData[] | undefined;
-  isLoading: boolean;
-  error: AxiosError | null;
-}) {
+function BarGraph({ data = [], isLoading, error }) {
   const router = useRouter();
-  const options: AgChartOptions = {
+  const options = {
     data: data,
     series: [
       {
-        type: 'column',
+        type: 'bar',
         xKey: 'movieNm',
         yKey: 'audiCnt',
         yName: '일일 관객 수',
@@ -61,7 +48,7 @@ function Bargraph({
         label: {
           autoRotate: false,
           avoidCollisions: false,
-          formatter: (params: FormatterParams) => {
+          formatter: (params) => {
             const title = params.value;
             let result = '';
 
@@ -86,15 +73,15 @@ function Bargraph({
     ],
   };
 
-  const [startX, setStartX] = useState<number | null>(null);
-  const [startY, setStartY] = useState<number | null>(null);
+  const [startX, setStartX] = useState(null);
+  const [startY, setStartY] = useState(null);
 
-  const onTouchStart = (event: React.TouchEvent) => {
+  const onTouchStart = (event) => {
     setStartX(event.touches[0].clientX);
     setStartY(event.touches[0].clientY);
   };
 
-  const onTouchMove = (event: React.TouchEvent) => {
+  const onTouchMove = (event) => {
     if (startX !== null && startY !== null) {
       const currentX = event.touches[0].clientX;
       const currentY = event.touches[0].clientY;
@@ -130,4 +117,4 @@ function Bargraph({
   );
 }
 
-export default Bargraph;
+export default BarGraph;

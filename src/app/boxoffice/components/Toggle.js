@@ -1,16 +1,8 @@
 import { useCallback } from 'react';
 
-function Toggle({
-  type,
-  setType,
-  setDate,
-}: {
-  type: string;
-  setType: React.Dispatch<React.SetStateAction<string>>;
-  setDate: React.Dispatch<React.SetStateAction<Date>>;
-}) {
+function Toggle({ type, setType, setDate }) {
   const handleType = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>) => {
+    (e) => {
       const currentDate = new Date();
 
       if (e.currentTarget.dataset.type === '일별') {

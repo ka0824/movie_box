@@ -12,9 +12,7 @@ import { useState, useEffect } from 'react';
  */
 
 function useDate() {
-  const [date, setDate] = useState<Date>(
-    new Date(Date.now() - 24 * 60 * 60 * 1000)
-  );
+  const [date, setDate] = useState(new Date(Date.now() - 24 * 60 * 60 * 1000));
   const [formatted, setFormatted] = useState(
     `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${(
       '0' + date.getDate()

@@ -1,19 +1,11 @@
-import useDailyBoxOffice from '@/customhook/use-daily-boxoffice';
-import Rank from './rank';
+import useDailyBoxOffice from '@/customHooks/useDailyBoxoffice';
+import Rank from './Rank';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import Bargraph from './bargraph';
-import Piegraph from './piegraph';
+import BarGraph from './BarGraph';
+import PieGraph from './PieGraph';
 
-function Daily({
-  formatted,
-  movieType,
-  movieNation,
-}: {
-  formatted: string;
-  movieType: string;
-  movieNation: string;
-}) {
+function Daily({ formatted, movieType, movieNation }) {
   const { isLoading, error, data } = useDailyBoxOffice(
     formatted,
     movieType,
@@ -23,14 +15,14 @@ function Daily({
   return (
     <div className="flex flex-col">
       <div className="mb-4 font-black text-xl">일별 박스오피스</div>
-      <div className="mb-8">
+      <div className="mb-8 scrollbar-hide">
         <Rank data={data} isLoading={isLoading} error={error}></Rank>
       </div>
       <div className="mb-8">
-        <Bargraph data={data} isLoading={isLoading} error={error}></Bargraph>
+        <BarGraph data={data} isLoading={isLoading} error={error}></BarGraph>
       </div>
       <div className="mb-8">
-        <Piegraph data={data} isLoading={isLoading} error={error}></Piegraph>
+        <PieGraph data={data} isLoading={isLoading} error={error}></PieGraph>
       </div>
     </div>
   );

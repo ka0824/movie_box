@@ -1,26 +1,32 @@
-import LoadingSpinner from '@/component/loading-spinner';
-import useMovieData from '@/customhook/use-movie-data';
-import { GrPrevious } from 'react-icons/gr';
-import { useRouter } from 'next/router';
-import { Actor, Director, Genre } from '@/type/global';
+'use client';
 
-function Index() {
+import LoadingSpinner from '@/app/components/LoadingSpinner';
+import useMovieData from '@/customHooks/useMovieData';
+import { GrPrevious } from 'react-icons/gr';
+import { useRouter } from 'next/navigation';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
+
+function Page({ params }) {
   const router = useRouter();
-  const [, , movieId] = router.asPath.split('/');
-  const { isLoading, error, data } = useMovieData(movieId);
+  const { isLoading, error, data } = useMovieData(params.id);
   function goPrev() {
     router.back();
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center">
-        <LoadingSpinner></LoadingSpinner>
-      </div>
-    );
-  }
+  //   if (isLoading) {
+  //     return (
+  //       <QueryClientProvider client={queryClient}>
+  //         <div className="flex justify-center">
+  //           <LoadingSpinner></LoadingSpinner>
+  //         </div>
+  //       </QueryClientProvider>
+  //     );
+  //   }
 
   return (
+    // <QueryClientProvider client={queryClient}>
     <div className="flex flex-col">
       <div className="font-black text-xl">영화 소개</div>
       <div className="w-fit ml-auto mr-auto">
@@ -42,7 +48,7 @@ function Index() {
             <tr>
               <th>장르</th>
               <td>
-                {data?.genres.map((element: Genre, idx: number) => (
+                {data?.genres.map((element, idx) => (
                   <div key={`genre-${idx}`}>{element.genreNm}</div>
                 ))}
               </td>
@@ -50,7 +56,7 @@ function Index() {
             <tr>
               <th>배우</th>
               <td>
-                {data?.actors.map((element: Actor, idx: number) => (
+                {data?.actors.map((element, idx) => (
                   <div key={`actor-${idx}`}>{element.peopleNm}</div>
                 ))}
               </td>
@@ -58,7 +64,7 @@ function Index() {
             <tr>
               <th>연출</th>
               <td>
-                {data?.directors.map((element: Director, idx: number) => (
+                {data?.directors.map((element, idx) => (
                   <div key={`director-${idx}`}>{element.peopleNm}</div>
                 ))}
               </td>
@@ -71,7 +77,8 @@ function Index() {
         </table>
       </div>
     </div>
+    // </QueryClientProvider>
   );
 }
 
-export default Index;
+export default Page;

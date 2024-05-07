@@ -1,18 +1,13 @@
 import { useState } from 'react';
-import { DailyData } from '@/type/global';
 import { AxiosError } from 'axios';
 import { AgChartsReact } from 'ag-charts-react';
 import {
   AgChartOptions,
   AgPieSeriesTooltipRendererParams,
 } from 'ag-charts-community';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
-interface FormatterParams {
-  value: string;
-}
-
-function tooltipRenderer(params: AgPieSeriesTooltipRendererParams) {
+function tooltipRenderer(params) {
   const data = params.datum;
 
   return {
@@ -24,23 +19,16 @@ function tooltipRenderer(params: AgPieSeriesTooltipRendererParams) {
   };
 }
 
-function Piegraph({
-  data,
-  isLoading,
-  error,
-}: {
-  data: DailyData[] | undefined;
-  isLoading: boolean;
-  error: AxiosError | null;
-}) {
+function PieGraph({ data, isLoading, error }) {
   const router = useRouter();
-  const options: AgChartOptions = {
+  const options = {
     data: data,
     series: [
       {
         type: 'pie',
         angleKey: 'audiCnt',
         labelKey: 'movieNm',
+        calloutLabelKey: 'movieNm',
         tooltip: {
           renderer: tooltipRenderer,
         },
@@ -54,15 +42,15 @@ function Piegraph({
     ],
   };
 
-  const [startX, setStartX] = useState<number | null>(null);
-  const [startY, setStartY] = useState<number | null>(null);
+  const [startX, setStartX] = useState(null);
+  const [startY, setStartY] = useState(null);
 
-  const onTouchStart = (event: React.TouchEvent) => {
+  const onTouchStart = (event) => {
     setStartX(event.touches[0].clientX);
     setStartY(event.touches[0].clientY);
   };
 
-  const onTouchMove = (event: React.TouchEvent) => {
+  const onTouchMove = (event) => {
     if (startX !== null && startY !== null) {
       const currentX = event.touches[0].clientX;
       const currentY = event.touches[0].clientY;
@@ -98,4 +86,4 @@ function Piegraph({
   );
 }
 
-export default Piegraph;
+export default PieGraph;

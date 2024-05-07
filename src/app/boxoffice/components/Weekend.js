@@ -1,18 +1,10 @@
-import useWeekendBoxOffice from '@/customhook/use-weekend-boxoffice';
+import useWeekendBoxoffice from '@/customhooks/useWeekendBoxoffice';
 import { useState } from 'react';
-import Rank from './rank';
-import Bargraph from './bargraph';
-import Piegraph from './piegraph';
+import Rank from './Rank';
+import BarGraph from './BarGraph';
+import PieGraph from './PieGraph';
 
-function Weekend({
-  formatted,
-  movieType,
-  movieNation,
-}: {
-  formatted: string;
-  movieType: string;
-  movieNation: string;
-}) {
+function Weekend({ formatted, movieType, movieNation }) {
   const [weekType, setWeekType] = useState('1');
   const { isLoading, error, data } = useWeekendBoxOffice(
     formatted,
@@ -37,10 +29,10 @@ function Weekend({
         <Rank data={data} isLoading={isLoading} error={error}></Rank>
       </div>
       <div className="mb-8">
-        <Bargraph data={data} isLoading={isLoading} error={error}></Bargraph>
+        <BarGraph data={data} isLoading={isLoading} error={error}></BarGraph>
       </div>
       <div className="mb-8">
-        <Piegraph data={data} isLoading={isLoading} error={error}></Piegraph>
+        <PieGraph data={data} isLoading={isLoading} error={error}></PieGraph>
       </div>
     </div>
   );

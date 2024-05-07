@@ -1,10 +1,8 @@
-import { DailyData } from '@/type/global';
 import { AxiosError } from 'axios';
 import { AgGridReact } from 'ag-grid-react';
-import { RowDoubleClickedEvent, ValueFormatterParams } from 'ag-grid-community';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
-function RankChangeRenderer(params: ValueFormatterParams) {
+function RankChangeRenderer(params) {
   let result;
   const basicClass = 'text-white px-2 py-1 rounded-md';
 
@@ -31,7 +29,7 @@ function RankChangeRenderer(params: ValueFormatterParams) {
   return result;
 }
 
-function numberWithCommas(params: ValueFormatterParams) {
+function numberWithCommas(params) {
   if (!params.colDef.field) {
     return '';
   }
@@ -42,18 +40,10 @@ function numberWithCommas(params: ValueFormatterParams) {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-function Rank({
-  data = [],
-  isLoading,
-  error,
-}: {
-  data: DailyData[] | undefined;
-  isLoading: boolean;
-  error: AxiosError | null;
-}) {
+function Rank({ data = [], isLoading, error }) {
   const router = useRouter();
 
-  const handleRowDoubleClick = (params: RowDoubleClickedEvent) => {
+  const handleRowDoubleClick = (params) => {
     router.push(`/movie/${params.data.movieCd}`);
   };
 
@@ -84,7 +74,7 @@ function Rank({
   ];
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 480 }}>
+    <div className="ag-theme-alpine scrollbar-hide" style={{ height: 480 }}>
       <AgGridReact
         columnDefs={columnDefs}
         rowData={data}
@@ -94,6 +84,7 @@ function Rank({
             : '<div>데이터가 없습니다.</div>'
         }
         onRowDoubleClicked={handleRowDoubleClick}
+        alwaysShowVerticalScroll={false}
       ></AgGridReact>
     </div>
   );
